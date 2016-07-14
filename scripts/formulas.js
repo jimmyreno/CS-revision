@@ -23,7 +23,32 @@ var Formulas = (function() {
             }
         }
         return total;
+    };
+
+    var fibonacciR = function (n) {
+        if (n < 2) {
+            return n;
+        }
+        else {
+            return fibonacciR(n - 1) + fibonacciR(n - 2);
+        }
     }
+
+    var fibonacciM = (function () {
+
+        // bootstrap the first 2 cases
+        var memo = [0, 1];
+
+        var fib = function (n) {
+            var result = memo[n];
+            if (typeof result !== 'number') {
+                result = fib(n - 1) + fib(n - 2);
+                memo[n] = result;
+            }
+            return result;
+        };
+        return fib;
+    }());
 
     return formulas;
 
